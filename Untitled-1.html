@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Un message spécial pour Hope ❤️" />
+    <title>Pour toi Hope ❤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Segoe+UI:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #ff4b6e;
+        --gradient-start: #ff758c;
+        --gradient-end: #ff7eb3;
+        --text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        --transition: all 0.3s ease;
+      }
+
+      body {
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--gradient-start),
+          var(--gradient-end)
+        );
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center; /* ✅ Changé : on laisse le scroll si besoin */
+        min-height: 100vh;
+        padding: 20px 10px; /* ✅ Espace pour éviter que le contenu touche les bords */
+        position: relative;
+        line-height: 1.7;
+        overflow-x: hidden; /* ✅ Seul le horizontal est caché */
+      }
+
+      @keyframes gradientShift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .container {
+        text-align: center;
+        padding: 30px 25px;
+        max-width: 600px;
+        width: 100%;
+        max-height: 85vh; /* ✅ Hauteur max pour laisser de la place */
+        overflow-y: auto; /* ✅ Scroll vertical activé */
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        animation: slideUp 0.8s ease-out;
+        z-index: 10;
+        position: relative;
+      }
+
+      /* ✅ Style personnalisé pour la scrollbar (Webkit) */
+      .container::-webkit-scrollbar {
+        width: 6px;
+      }
+      .container::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+      }
+      .container::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 10px;
+      }
+      .container::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      h1 {
+        font-family: "Dancing Script", cursive;
+        font-size: 2.4rem;
+        margin-bottom: 25px;
+        text-shadow: var(--text-shadow);
+        animation: fadeIn 1.5s ease;
+        letter-spacing: 1px;
+      }
+
+      #message {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        margin-bottom: 30px;
+        opacity: 1;
+        transition:
+          opacity 1s ease,
+          transform 0.5s ease;
+        text-shadow: var(--text-shadow);
+        min-height: 60px;
+        text-align: justify; /* ✅ Meilleure lisibilité pour les longs textes */
+        text-justify: inter-word;
+      }
+
+      #message.revealed {
+        animation: messageReveal 0.8s ease-out;
+      }
+
+      @keyframes messageReveal {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .btn {
+        padding: 14px 32px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 50px;
+        background: white;
+        color: var(--primary);
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.6),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .btn:hover::after {
+        left: 100%;
+      }
+      .btn:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      }
+      .btn:focus {
+        outline: 3px solid rgba(255, 255, 255, 0.8);
+        outline-offset: 3px;
+      }
+      .btn:active {
+        transform: scale(0.98);
+      }
+      .btn.hidden {
+        display: none;
+      }
+
+      .music-control {
+        margin-top: 20px;
+        display: none;
+      }
+
+      .music-control button {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: var(--transition);
+      }
+
+      .music-control button:hover {
+        background: rgba(255, 255, 255, 0.35);
+      }
+      .music-control.visible {
+        display: block;
+        animation: fadeIn 1s ease;
+      }
+
+      /* ===== COEURS ===== */
+      .heart {
+        position: fixed;
+        bottom: -20px;
+        color: rgba(255, 255, 255, 0.85);
+        animation: floatUp linear forwards;
+        pointer-events: none;
+        z-index: 1;
+        will-change: transform, opacity;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      @keyframes floatUp {
+        to {
+          transform: translateY(-110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* ===== CONFETTI ===== */
+      .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: white;
+        animation: confettiFall 3s ease-out forwards;
+        pointer-events: none;
+        z-index: 5;
+        border-radius: 2px;
+      }
+
+      @keyframes confettiFall {
+        0% {
+          transform: translateY(-10px) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2rem;
+        }
+        #message {
+          font-size: 1.05rem;
+        }
+        .btn {
+          padding: 12px 28px;
+          font-size: 1rem;
+        }
+        .container {
+          padding: 25px 20px;
+          border-radius: 20px;
+          max-height: 90vh; /* ✅ Plus de hauteur sur mobile */
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container" role="main">
+      <h1>Pour toi Hope ❤️</h1>
+
+      <p id="message" aria-live="polite">
+        J'ai quelque chose d'important à te dire… prends une seconde 💭
+      </p>
+
+      <button
+        class="btn"
+        id="revealBtn"
+        onclick="revealMessage()"
+        aria-label="Révéler le message secret"
+      >
+        Clique ici ❤️
+      </button>
+
+      <div class="music-control" id="musicControl">
+        <button id="toggleMusic" aria-label="Mettre en pause la musique">
+          ⏸ Pause
+        </button>
+      </div>
+    </div>
+
+    <audio id="music" loop preload="auto">
+      <source src="Thinking-out-Loud.mp3" type="audio/mpeg" />
+      Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+
+    <script>
+      const messageEl = document.getElementById("message");
+      const revealBtn = document.getElementById("revealBtn");
+      const music = document.getElementById("music");
+      const musicControl = document.getElementById("musicControl");
+      const toggleMusicBtn = document.getElementById("toggleMusic");
+      let isMusicPlaying = false;
+
+      function revealMessage() {
+        const fullMessage =
+          "Hope…<br><br>" +
+          "Je sais que ces derniers temps, nous deux… c'est devenu compliqué.<br><br>" +
+          "On se dispute pour des choses qui, au fond, ne valent même pas tout ce qu'on est en train de perdre.<br><br>" +
+          "Et ça me fait peur.<br><br>" +
+          "Parce que la vérité, c'est que je t'aime. Vraiment.<br>" +
+          "Pas juste dans les bons moments, mais aussi dans ceux où on se comprend mal, où on se blesse sans le vouloir.<br><br>" +
+          "Je réalise que je t'ai fatiguée… et ça me fait mal de savoir que je suis devenu une source de tristesse pour toi, alors que je devrais être ton refuge.<br><br>" +
+          "Je ne veux pas te perdre pour des détails.<br>" +
+          "Je ne veux pas qu'un jour on se regarde comme deux inconnus qui s'aimaient autrefois.<br><br>" +
+          "Tu comptes énormément pour moi. Peut-être plus que je ne l'ai montré.<br>" +
+          "Et si j'ai mal agi, si je t'ai blessée, je te demande pardon… sincèrement.<br><br>" +
+          "Je ne te promets pas d'être parfait, mais je te promets de faire des efforts, de mieux te comprendre, de mieux t'écouter… parce que tu en vaux la peine.<br><br>" +
+          "J'ai envie qu'on se retrouve. Pas comme avant… mais encore mieux.<br>" +
+          "Avec plus de maturité, plus de douceur, et moins d'ego.<br><br>" +
+          "Parce que toi et moi… ça mérite d'être sauvé.<br><br>" +
+          "Et moi, je veux me battre pour nous.";
+
+        messageEl.style.opacity = 0;
+
+        setTimeout(() => {
+          messageEl.innerHTML = fullMessage;
+          messageEl.classList.add("revealed");
+          messageEl.style.opacity = 1;
+
+          // ✅ Scroll automatique vers le haut du message après révélation
+          const container = document.querySelector(".container");
+          container.scrollTop = 0;
+
+          revealBtn.classList.add("hidden");
+          musicControl.classList.add("visible");
+
+          playMusic();
+          createConfetti();
+        }, 400);
+      }
+
+      async function playMusic() {
+        try {
+          await music.play();
+          isMusicPlaying = true;
+          toggleMusicBtn.textContent = "⏸ Pause";
+          toggleMusicBtn.setAttribute(
+            "aria-label",
+            "Mettre en pause la musique",
+          );
+        } catch (err) {
+          console.warn("Lecture audio bloquée:", err);
+          musicControl.classList.add("visible");
+          toggleMusicBtn.textContent = "▶ Lire la musique";
+        }
+      }
+
+      function toggleMusic() {
+        if (isMusicPlaying) {
+          music.pause();
+          toggleMusicBtn.textContent = "▶ Reprendre";
+        } else {
+          music.play().then(() => {
+            toggleMusicBtn.textContent = "⏸ Pause";
+          });
+        }
+        isMusicPlaying = !isMusicPlaying;
+      }
+
+      toggleMusicBtn.addEventListener("click", toggleMusic);
+
+      function createConfetti() {
+        const colors = ["#fff", "#ffd3b6", "#ffaaa5", "#ff8b94", "#d4a5ff"];
+        for (let i = 0; i < 50; i++) {
+          setTimeout(() => {
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.backgroundColor =
+              colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = Math.random() * 8 + 4 + "px";
+            confetti.style.height = confetti.style.width;
+            confetti.style.animationDuration = Math.random() * 2 + 2 + "s";
+            confetti.style.animationDelay = Math.random() * 0.5 + "s";
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+          }, i * 30);
+        }
+      }
+
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 16 + 12 + "px";
+        heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+        heart.style.animationDelay = Math.random() * 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 7000);
+      }
+
+      const heartInterval = setInterval(createHeart, 500);
+
+      window.addEventListener("beforeunload", () => {
+        clearInterval(heartInterval);
+        music.pause();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (
+          (e.key === "Enter" || e.key === " ") &&
+          revealBtn &&
+          !revealBtn.classList.contains("hidden")
+        ) {
+          e.preventDefault();
+          revealMessage();
+        }
+      });
+    </script>
+  </body>
+</html>
